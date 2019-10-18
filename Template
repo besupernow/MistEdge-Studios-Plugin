@@ -1,0 +1,17 @@
+data = require(script.Parent.MainModule)
+player = game:GetService("Players")
+timer = 10 --Change to Create more Time to Update
+data:AutoUpdate(true)
+game.Players.PlayerAdded:Connect(function(player)
+	data:onJoin(player)
+	while wait(timer)do --Creates a Interval for saving info
+		game.ReplicatedStorage.DataStoreUpdate:FireClient(player)
+		data:TimeSave(player)
+	end
+end)
+game.Players.PlayerRemoving:Connect(function(player)
+	data:onLeave(player)
+end)
+
+wait(2)
+data:Update(player)
