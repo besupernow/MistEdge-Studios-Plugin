@@ -1,5 +1,5 @@
 local data = {}
-name = "DataStore" --Change the Datasore name here!
+name = script.DataName --Change the StringValue to change the DataStore name
 local datastore = game:GetService("DataStoreService"):GetDataStore(name)
 DataToSave = { 					---Edit Data Here!
 	Cash = script.Cash,
