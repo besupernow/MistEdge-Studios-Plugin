@@ -1,0 +1,67 @@
+tween = game:GetService("TweenService")
+game.ReplicatedStorage.DataStoreUpdate.OnClientEvent:Connect(function()
+print("Saved Data")
+
+
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local TextLabel = Instance.new("TextLabel")
+local TextLabel_Roundify_12px = Instance.new("ImageLabel")
+local TextLabel_2 = Instance.new("TextLabel")
+
+
+
+ScreenGui.Parent = script.Parent
+
+Frame.Parent = ScreenGui
+Frame.AnchorPoint = Vector2.new(0.5, 0.5)
+Frame.BackgroundColor3 = Color3.new(1, 1, 1)
+Frame.BackgroundTransparency = 1
+Frame.BorderSizePixel = 0
+Frame.Position = UDim2.new(0.5, 0, 1.1, 0)
+Frame.Size = UDim2.new(0.5, 0, 0.100000001, 0)
+Frame.Visible = true
+
+TextLabel.Parent = Frame
+TextLabel.BackgroundColor3 = Color3.new(0.290196, 0.290196, 0.290196)
+TextLabel.BackgroundTransparency = 1
+TextLabel.BorderSizePixel = 0
+TextLabel.Size = UDim2.new(1, 0, 1, 0)
+TextLabel.ZIndex = 2
+TextLabel.Font = Enum.Font.SourceSans
+TextLabel.Text = "Your Data Has been Saved! "
+TextLabel.TextColor3 = Color3.new(1, 1, 1)
+TextLabel.TextSize = 20
+TextLabel.TextWrapped = true
+
+TextLabel_Roundify_12px.Name = "TextLabel_Roundify_12px"
+TextLabel_Roundify_12px.Parent = TextLabel
+TextLabel_Roundify_12px.AnchorPoint = Vector2.new(0.5, 0.5)
+TextLabel_Roundify_12px.BackgroundColor3 = Color3.new(1, 1, 1)
+TextLabel_Roundify_12px.BackgroundTransparency = 1
+TextLabel_Roundify_12px.Position = UDim2.new(0.5, 0, 0.5, 0)
+TextLabel_Roundify_12px.Size = UDim2.new(1, 0, 1, 0)
+TextLabel_Roundify_12px.Image = "rbxassetid://3570695787"
+TextLabel_Roundify_12px.ImageColor3 = Color3.new(0.290196, 0.290196, 0.290196)
+TextLabel_Roundify_12px.ImageTransparency = 0.5
+TextLabel_Roundify_12px.ScaleType = Enum.ScaleType.Slice
+TextLabel_Roundify_12px.SliceCenter = Rect.new(100, 100, 100, 100)
+
+TextLabel_2.Parent = TextLabel
+TextLabel_2.AnchorPoint = Vector2.new(0.5, 0.5)
+TextLabel_2.BackgroundColor3 = Color3.new(1, 1, 1)
+TextLabel_2.BackgroundTransparency = 1
+TextLabel_2.BorderSizePixel = 0
+TextLabel_2.Position = UDim2.new(0.5, 0, 0.899999976, 0)
+TextLabel_2.Size = UDim2.new(1, 0, 0.300000012, 0)
+TextLabel_2.Font = Enum.Font.SourceSans
+TextLabel_2.Text = "Credits to besupernow for DataStore Module"
+TextLabel_2.TextColor3 = Color3.new(1, 1, 1)
+TextLabel_2.TextSize = 10
+Frame:TweenPosition(UDim2.fromScale(.5, .9), "In", "Bounce", 1)
+wait(5)
+Frame:TweenPosition(UDim2.fromScale(.5, 1.1), "Out", "Bounce", 1)
+wait(1.1)
+ScreenGui:Destroy()
+end)
+
