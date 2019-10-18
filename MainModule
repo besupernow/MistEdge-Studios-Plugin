@@ -2,9 +2,9 @@ local data = {}
 name = "DataStore" --Change the Datasore name here!
 local datastore = game:GetService("DataStoreService"):GetDataStore(name)
 DataToSave = { 					---Edit Data Here!
-	Cash = Instance.new("IntValue"),
-	XP = Instance.new("IntValue"),
-	Level = Instance.new("IntValue"),
+	Cash = script.Cash,
+	XP = script.XP,
+	Level = script.Level,
 	}
 function data:onJoin(player)
 	script.Parent.Template.GuiMaker.Parent = player.PlayerGui
@@ -12,26 +12,27 @@ function data:onJoin(player)
 	local stats = Instance.new("Folder")
 	stats.Parent = player
 	stats.Name = "leaderstats"
-	DataToSave.XP.Name = "XP" 
-	DataToSave.XP.Parent = stats
-	 
-	DataToSave.Level.Name = "Level" 
-	DataToSave.Level.Parent = stats
-	
-	DataToSave.Cash.Name = "Cash" 
-	DataToSave.Cash.Parent = stats
+	local Xp = DataToSave.XP:Clone()
+	Xp.Name = "XP" 
+	Xp.Parent = stats
+	local level = DataToSave.Level:Clone()
+	level.Name = "Level" 
+	level.Parent = stats
+	local cash = DataToSave.Cash:Clone()
+	cash.Name = "Cash" 
+	cash.Parent = stats
 	 
 	local key = "user-" .. player.userId
 	
 	local storeditems = datastore:GetAsync(key)
 	if storeditems then
-		DataToSave.XP.Value = storeditems[1] 
-		DataToSave.Level.Value = storeditems[2] 
-		DataToSave.Cash.Value = storeditems[3] 
+		Xp.Value = storeditems[1] 
+		level.Value = storeditems[2] 
+		cash.Value = storeditems[3] 
 		
 		
 	else
-		local items = {DataToSave.XP.Value, DataToSave.Level.Value, DataToSave.Cash.Value} 
+		local items = {Xp.Value, level.Value, cash.Value} 
 		datastore:SetAsync(key, items)
 	end
 
