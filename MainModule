@@ -1,5 +1,5 @@
 local data = {}
-name = script.DataName --Change the StringValue to change the DataStore name
+name = script.DataName --Change the Datasore name here!
 local datastore = game:GetService("DataStoreService"):GetDataStore(name)
 DataToSave = { 					---Edit Data Here!
 	Cash = script.Cash,
@@ -33,7 +33,13 @@ function data:onJoin(player)
 		
 	else
 		local items = {Xp.Value, level.Value, cash.Value} 
-		datastore:SetAsync(key, items)
+		local success, err = pcall(function()
+		datastore:UpdateAsync(key, function(oldValue)
+			local newValue = oldValue or 0
+			newValue = items
+			return newValue
+		end)
+	end)
 	end
 
 end
@@ -42,14 +48,26 @@ function data:onLeave(player)
 	local items = {player.leaderstats.XP.Value, player.leaderstats.Level.Value, player.leaderstats.Cash.Value,} 
 	local key = "user-" .. player.userId
 	
-	datastore:SetAsync(key, items)
+	local success, err = pcall(function()
+		datastore:UpdateAsync(key, function(oldValue)
+			local newValue = oldValue or 0
+			newValue = items
+			return newValue
+		end)
+	end)
 
 end
 
 function data:TimeSave(player)
 	local items = {player.leaderstats.XP.Value, player.leaderstats.Level.Value, player.leaderstats.Cash.Value,} 
 	local key = "user-" .. player.userId	
-	datastore:SetAsync(key, items)
+	local success, err = pcall(function()
+		datastore:UpdateAsync(key, function(oldValue)
+			local newValue = oldValue or 0
+			newValue = items
+			return newValue
+		end)
+	end)
 end
 
 function data:UpdateCash(valueamt)
@@ -58,8 +76,15 @@ end
 function data:Update(player)
 	local items = {player.leaderstats.XP.Value, player.leaderstats.Level.Value, player.leaderstats.Cash.Value,} 
 	local key = "user-" .. player.userId	
-	datastore:SetAsync(key, items)
-	print('updated')
+	local success, err = pcall(function()
+		datastore:UpdateAsync(key, function(oldValue)
+			local newValue = oldValue or 0
+			newValue = items
+			print('updated')
+			return newValue
+		end)
+	end)
+	
 end
 function data:UpdateXp(xpamt)
 	DataToSave.XP.Value = DataToSave.XP.Value + xpamt
